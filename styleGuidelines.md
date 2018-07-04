@@ -27,8 +27,7 @@ braces.
 
 > Do not use a tab character.
 
-<details>
-<summary>Examples</summary>
+### Examples ###
 
 **yay:**
 
@@ -56,8 +55,6 @@ workflow example {
 }
 ```
 
-</details>
-
 ## 2. Blank lines ##
 Blank lines should be used to separate different parts of a workflow:
 - Different blocks (code surrounded by `{}`) should be separated by a single
@@ -69,8 +66,7 @@ Blank lines should be used to separate different parts of a workflow:
 - Between the closing braces of a parent and child block, no blank lines should
   be placed.
 
-<details>
-<summary>Examples</summary>
+### Examples ###
 
 **yay:**
 
@@ -112,8 +108,6 @@ task echo {
 }
 ```
 
-</details>
-
 ## 3. Expression spacing ##
 Expressions should be spaced out to improve readability.
 
@@ -150,8 +144,7 @@ surrounded by brackets.
 - Unary plus: `+`
 - Unary negation: `-`
 
-<details>
-<summary>Examples</summary>
+### Examples ###
 
 **yay:**
 - `1 + 1`
@@ -164,8 +157,6 @@ surrounded by brackets.
 - `1 + 1 / 2`
 - `( 1+1 ) / 2` or `(1 + 1)/2`
 - `!(a==-1)` or `! (a == -1)` or `!a == -1`
-
-</details>
 
 ## 4. Line length and line breaks ##
 Lines should be at most 100 characters long. If a line exceeds this, it should
@@ -188,8 +179,7 @@ These include:
 - Following opening braces (`{`).
 - Before closing braces (`}`).
 
-<details>
-<summary>Examples</summary>
+### Examples ###
 
 **yay:**
 
@@ -235,8 +225,6 @@ call SomeTask as doStuff {
 call SomeTask as doStuff {input: number = 1, letter = "a"}
 ```
 
-</details>
-
 ## 5. Naming conventions ##
 All imports and calls should be named using the `as` syntax. The names for the
 various different types of objects should be formatted as listed below:
@@ -266,8 +254,7 @@ the `String` or `String?` type.
 to avoid conflicts in names between calls and imports, if it can otherwise not
 be avoided. Do not change the name of the call.
 
-<details>
-<summary>Examples</summary>
+### Examples ###
 
 **yay:**
 
@@ -316,9 +303,6 @@ task doStuff {
     }
 }
 ```
-
-</details>
-
 ## 6. Workflow structure ##
 In general tasks and workflows should be kept in separate files. Only if a
 task is small and specific to a certain workflow should it be in the same file
@@ -339,8 +323,7 @@ Calls in a workflow should be placed in order of execution.
    actual command. Preferably *directly* before the actual command. The
    preCommand should be settable as an inputs.
 
-<details>
-<summary>Examples</summary>
+### Examples ###
 
 **yay:**
 
@@ -388,8 +371,6 @@ task doStuff {
     }
 }
 ```
-
-</details>
 
 ## 8. Imports ##
 Imports should be placed in alphabetical order at the top of the file. All
