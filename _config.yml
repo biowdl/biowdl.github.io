@@ -1,1 +1,3 @@
 theme: jekyll-theme-minimal
+title: BioWDL
+description: A collection of WDL pipelines for sequencing analyses.
