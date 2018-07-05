@@ -1,5 +1,5 @@
 # BioWDL
-> BioWDL is currently still under development and not production readability
+> BioWDL is currently still under development and not production ready.
 > Use at own risk!
 
 ## About
@@ -15,5 +15,5 @@ BioWDL is developed at the Leiden University Medical Center by
 You can find the style guidelines [here](styleGuidelines.md).
 
 ## Contact
- For any question related to any BioWDL workflows, please use the relevant
- github issue tracker or contact the SASC team directly at: sasc@lumc.nl.
+For any question related to any BioWDL workflows, please use the relevant
+github issue tracker or contact the SASC team directly at: sasc@lumc.nl.
