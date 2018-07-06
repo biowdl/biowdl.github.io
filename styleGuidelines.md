@@ -3,17 +3,6 @@ layout: default
 title: BioWDL Style Guidelines
 ---
 
-## Contents ##
-1. [Indentation](#1-indentation)
-2. [Blank lines](#2-blank-lines)
-3. [Expression spacing](#3-expression-spacing)
-4. [Line length and line breaks](#4-line-length-and-line-breaks)
-5. [Naming conventions](#5-naming-conventions)
-6. [Workflow structure](#6-workflow-structure)
-7. [Command block](#7-command-block)
-8. [Imports](#8-imports)
-9. [Style enforcement](#9-style-enforcement)
-
 ## 1. Indentation ##
 What should be indented:
 1. Anything within a set of braces `{}`.
