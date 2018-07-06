@@ -2,7 +2,6 @@
 layout: default
 ---
 
-# BioWDL
 > BioWDL is currently still under development and not production ready.
 > Use at own risk!
 

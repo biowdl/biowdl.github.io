@@ -1,11 +1,7 @@
 ---
 layout: default
+title: BioWDL Style Guidelines
 ---
-
-*Copyright 2018 Sequencing Analysis Support Core - Leiden University Medical
-Center*
-
-# BioWDL Style Guidelines #
 
 ## Contents ##
 1. [Indentation](#1-indentation)
