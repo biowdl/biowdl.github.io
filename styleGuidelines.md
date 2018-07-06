@@ -1,3 +1,7 @@
+---
+layout: default
+---
+
 *Copyright 2018 Sequencing Analysis Support Core - Leiden University Medical
 Center*
 
