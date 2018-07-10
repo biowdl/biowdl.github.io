@@ -3,6 +3,10 @@ layout: default
 title: BioWDL Style Guidelines
 ---
 
+The following are a set of guidelines to make your WDL file more readable.
+Any workflow or pipeline that is part of BioWDL should adhere to these
+guidelines.
+
 ## 1. Indentation ##
 What should be indented:
 1. Anything within a set of braces `{}`.

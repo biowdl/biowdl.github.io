@@ -14,7 +14,7 @@ sequencing related analyses. They are made using
 BioWDL is developed at the Leiden University Medical Center by
 [the SASC team](http://sasc.lumc.nl/).
 
-## Style guide
+## Style guidelines
 You can find the style guidelines [here](styleGuidelines.md).
 
 ## Contact
