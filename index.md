@@ -1,5 +1,6 @@
 ---
 layout: default
+title: Home
 ---
 
 ## About
@@ -19,6 +20,19 @@ For any question related to any BioWDL workflows, please use the relevant
 github issue tracker or contact the SASC team directly at: sasc@lumc.nl.
 
 ## Pipelines and other repositories
+The following are the pipelines and repositories from BioWDL. The repositories
+are divided into the following categories:
+- **Single-Sample**: Pipelines or workflows which can only be run for a single
+sample at a time. These are production ready.
+- **Multi-Sample**: Pipelines or workflows which can be run for a multiple
+samples at the same time and perform inter-sample operations. These are
+production ready.
+- **Single-Sample Experimental**: Experimental (not production ready)
+Single-Sample pipelines and workflows.
+- **Multi-Sample Experimental**: Experimental (not production ready)
+Multi-Sample pipelines and workflows.
+- **Other**: Repositories which contain something other than workflows or
+pipelines.
 
 | Name | Category | Description |
 |-|-|-|

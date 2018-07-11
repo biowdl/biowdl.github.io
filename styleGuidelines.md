@@ -109,7 +109,7 @@ Spaces should be added between values and operators in calculations and
 evaluations. If multiple evaluations or calculations occur within a single
 expression, they may be grouped without placing spaces, with spaces being
 placed between the groups instead. It is advisable to base the groups on the
-order or operations.  
+order of operations.  
 In the case of groupings, opening brackets (`(`) should always be preceded by a
 space and closing brackets (`)`) should always be followed by one. There should
 not be a space between the brackets and their first or last value.  
