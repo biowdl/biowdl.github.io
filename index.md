@@ -37,7 +37,7 @@ pipelines.
 {% assign category = repo.description | split: "Category:" -%}
 | [{{ repo.name }}](/{{repo.name}})  ([repo]({{repo.html_url}}))| {{ category | last }} | {{ category | first }} |
 {% endif -%}
-{% endfor -%}
+{% endfor %}
 
 ## Contact
 For any question related to any BioWDL workflows, please use the relevant
