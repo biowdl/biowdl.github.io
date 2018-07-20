@@ -15,10 +15,6 @@ BioWDL is developed at the Leiden University Medical Center by
 ## Style guidelines
 You can find the style guidelines [here](styleGuidelines.md).
 
-## Contact
-For any question related to any BioWDL workflows, please use the relevant
-github issue tracker or contact the SASC team directly at: sasc@lumc.nl.
-
 ## Pipelines and other repositories
 The following are the pipelines and repositories from BioWDL. The repositories
 are divided into the following categories:
@@ -42,3 +38,7 @@ pipelines.
 | [{{ repo.name }}](/{{repo.name}})  ([repo]({{repo.html_url}}))| {{ category | last }} | {{ category | first }} |
 {% endif -%}
 {% endfor -%}
+
+## Contact
+For any question related to any BioWDL workflows, please use the relevant
+github issue tracker or contact the SASC team directly at: sasc@lumc.nl.
