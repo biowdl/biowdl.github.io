@@ -176,7 +176,7 @@ These include:
 - Following opening braces (`{`).
 - Before closing braces (`}`).
 - Following opening heredoc-like command syntax (`<<<`).
-- Following closing heredoc-like command syntax (`<<<`).
+- Following closing heredoc-like command syntax (`>>>`).
 
 ### Examples ###
 
