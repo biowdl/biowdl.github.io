@@ -50,8 +50,8 @@ workflow example {
 
 ## 2. Blank lines ##
 Blank lines should be used to separate different parts of a workflow:
-- Different blocks (code surrounded by `{}`) should be separated by a single
-  blank line.
+- Different blocks (code surrounded by `{}` or `<<<>>>`) should be separated
+  by a single blank line.
 - Different groupings of inputs (either in call blocks or task blocks,
   may also be separated by a single blank line.
 - Inputs should always be followed by a single blank line, unless there is
@@ -65,12 +65,14 @@ Blank lines should be used to separate different parts of a workflow:
 
 ```
 task echo {
-    String message
+    input {
+        String message
 
-    String? outputPath # Optional input(s) separated from mandatory input(s)
+        String? outputPath # Optional input(s) separated from mandatory input(s)
+    }
 
     command {
-        echo ${message} ${"> " + outputPath}
+        echo ~{message} ~{"> " + outputPath}
     }
 
     output {
@@ -80,19 +82,21 @@ task echo {
 ```
 
 **nay:**
-- Double blank line between inputs and `command` block.
+- Double blank line between `input` and `command` block.
 - No blank line between `command` and `output` block.
 - Pointless blank line between closing braces.
 
 ```
 task echo {
-    String message
+    input {
+        String message
 
-    String? outputPath
+        String? outputPath
+    }
 
 
     command {
-        echo ${message} ${"> " + outputPath}
+        echo ~{message} ~{"> " + outputPath}
     }
     output {
         File? outputFile = outputPath
@@ -171,6 +175,8 @@ These include:
 - Following `inputs:` in a call block.
 - Following opening braces (`{`).
 - Before closing braces (`}`).
+- Following opening heredoc-like command syntax (`<<<`).
+- Following closing heredoc-like command syntax (`<<<`).
 
 ### Examples ###
 
@@ -253,15 +259,17 @@ be avoided. Do not change the name of the call.
 
 ```
 task DoStuff {
-    File inputFile
-    String outputPath
+    input {
+        File inputFile
+        String outputPath
 
-    Int maxRAM
+        Int maxRAM
+    }
 
     command {
         someScript \
-        -i ${inputFile} \
-        --maxRAM ${maxRAM} \
+        -i ~{inputFile} \
+        --maxRAM ~{maxRAM} \
         -o outputPath
     }
 
@@ -279,14 +287,16 @@ task DoStuff {
 
 ```
 task doStuff {
-    File input_file
-    String OutputPath
+    input {
+        File input_file
+        String OutputPath
 
-    Int ram
+        Int ram
+    }
 
     command {
         someScript \
-        -i ${input} \
+        -i ~{input} \
         --maxRAM ${maxRAM} \
         -o outputPath
     }
@@ -312,9 +322,11 @@ Calls in a workflow should be placed in order of execution.
    line, as long as the line does not exceed the line length limit as described
    in section 4.
 2. All bash commands should start with `set -eo pipefail`.
-3. All commands should have a `${preCommand}` following point 2 and before the
+3. All commands should have a `~{preCommand}` following point 2 and before the
    actual command. Preferably *directly* before the actual command. The
    preCommand should be settable as an inputs.
+4. The `~{...}` placeholder syntax should be used in all cases, rather than
+   the `${...}` syntax.
 
 ### Examples ###
 
@@ -322,15 +334,17 @@ Calls in a workflow should be placed in order of execution.
 
 ```
 task doStuff {
-    File inputFile
-    String outputPath
-    Int maxRAM
+    input {
+        File inputFile
+        String outputPath
+        Int maxRAM
 
-    String? preCommand
+        String? preCommand
+    }
 
     command {
         set -eo pipefail
-        ${preCommand}
+        ~{preCommand}
         someScript \
         -i ${inputFile} \
         --maxRAM ${maxRAM} \
@@ -350,13 +364,15 @@ task doStuff {
 
 ```
 task doStuff {
-    File inputFile
-    String outputPath
+    input {
+        File inputFile
+        String outputPath
 
-    Int maxRAM
+        Int maxRAM
+    }
 
     command {
-        someScript -i ${inputFile} --maxRAM ${maxRAM} -o outputPath
+        someScript -i ~{inputFile} --maxRAM ~{maxRAM} -o outputPath
     }
 
     output {
