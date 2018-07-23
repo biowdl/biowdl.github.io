@@ -297,7 +297,7 @@ task doStuff {
     command {
         someScript \
         -i ~{input} \
-        --maxRAM ${maxRAM} \
+        --maxRAM ~{maxRAM} \
         -o outputPath
     }
 
@@ -346,8 +346,8 @@ task doStuff {
         set -eo pipefail
         ~{preCommand}
         someScript \
-        -i ${inputFile} \
-        --maxRAM ${maxRAM} \
+        -i ~{inputFile} \
+        --maxRAM ~{maxRAM} \
         -o outputPath
     }
 
@@ -361,6 +361,7 @@ task doStuff {
 - all option are on the same line
 - `set -eo pipefail` is absent
 - `preCommand` is absent
+- usage of `${...}` placeholders
 
 ```
 task doStuff {
@@ -372,7 +373,7 @@ task doStuff {
     }
 
     command {
-        someScript -i ~{inputFile} --maxRAM ~{maxRAM} -o outputPath
+        someScript -i ${inputFile} --maxRAM ${maxRAM} -o outputPath
     }
 
     output {
