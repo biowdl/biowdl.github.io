@@ -7,6 +7,9 @@ The following are a set of guidelines to make your WDL file more readable.
 Any workflow or pipeline that is part of BioWDL should adhere to these
 guidelines.
 
+These guidelines were written for WDL 1.0, some segements may not be
+applicable for other WDL versions.
+
 ## 1. Indentation ##
 What should be indented:
 1. Anything within a set of braces `{}`.
@@ -25,7 +28,7 @@ braces.
 **yay:**
 
 ```
-workflow example {
+workflow Example {
     call SomeTask as doStuff {
         input:
             number = 1,
@@ -39,7 +42,7 @@ workflow example {
 - Inputs not indented.
 
 ```
-workflow example {
+workflow Example {
   call SomeTask as doStuff {
       input:
       number = 1,
@@ -54,8 +57,6 @@ Blank lines should be used to separate different parts of a workflow:
   by a single blank line.
 - Different groupings of inputs (either in call blocks or task blocks,
   may also be separated by a single blank line.
-- Inputs should always be followed by a single blank line, unless there is
-  nothing beneath them besides closing braces (`}`).
 - Between the closing braces of a parent and child block, no blank lines should
   be placed.
 
@@ -64,7 +65,7 @@ Blank lines should be used to separate different parts of a workflow:
 **yay:**
 
 ```
-task echo {
+task Echo {
     input {
         String message
 
@@ -87,7 +88,7 @@ task echo {
 - Pointless blank line between closing braces.
 
 ```
-task echo {
+task Echo {
     input {
         String message
 
@@ -108,12 +109,11 @@ task echo {
 ## 3. Expression spacing ##
 Expressions should be spaced out to improve readability.
 
-### Calculations and evaluations ###
-Spaces should be added between values and operators in calculations and
-evaluations. If multiple evaluations or calculations occur within a single
-expression, they may be grouped without placing spaces, with spaces being
-placed between the groups instead. It is advisable to base the groups on the
-order of operations.  
+### Expressions ###
+Spaces should be added between values and operators in expressions. If multiple
+expressions occur within a single overarching expression, they may be grouped
+without placing spaces, with spaces being placed between the groups instead.
+It is advisable to base the groups on the order of operations.  
 In the case of groupings, opening brackets (`(`) should always be preceded by a
 space and closing brackets (`)`) should always be followed by one. There should
 not be a space between the brackets and their first or last value.  
@@ -229,6 +229,7 @@ All imports and calls should be named using the `as` syntax. The names for the
 various different types of objects should be formatted as listed below:
 - Tasks: UpperCamelCase
 - Workflows: UpperCamelCase
+- Structs: UpperCamelCase
 - Calls: lowerCamelCase
 - Variables: lowerCamelCase
 - Inputs: see the notes below
@@ -237,12 +238,12 @@ various different types of objects should be formatted as listed below:
 ### Input names ###
 Input names should mimic the (long form) versions of the options they represent
 as much as possible. This entails that if there is a version of the option
-which is longer than 1 character, the associated input nam should be the same
+which is longer than 1 character, the associated input name should be the same
 as this long form option. Preferably the name would be reformatted to
 lowerCamelCase, though some exceptions may exist, such as cases in which the
 name contains capitalized abbreviation. A word following this abbreviation may
-be uncapitalized.
-In any other situation use lowerCamelCase.
+be uncapitalized.  
+In any other situation use lowerCamelCase.  
 When naming an input which represents a file path, which is not associated with
 a command option for which a long form exists, the name of this input should
 end with the word `Path`. Note that this is only the case if the input is of
@@ -307,13 +308,70 @@ task doStuff {
 }
 ```
 ## 6. Workflow structure ##
-In general tasks and workflows should be kept in separate files. Only if a
-task is small and specific to a certain workflow should it be in the same file
-as the workflow.
-Tasks relating to the same tool or toolkit should be in the same file.
-
-If a file contains multiple tasks, they should be ordered alphabetically.
+In general tasks and structs should be kept in separate files from workflows.
+Only if a task is small and specific to a certain workflow should it be in the
+same file as the workflow.  
+Tasks and structs relating to the same tool or toolkit should be in the same
+file. If a file contains multiple tasks and/or structs, the structs should be
+kept below the tasks and both the tasks and both the tasks and structs should
+be ordered alphabetically.  
 Calls in a workflow should be placed in order of execution.
+
+**yay:**
+```
+task A {
+    command {
+        echo A
+    }
+}
+
+task Z {
+    command {
+        echo Z
+    }
+}
+
+struct B {
+    String name
+}
+```
+
+**nay:**
+```
+# Structs and tasks mixed
+task A {
+    command {
+        echo A
+    }
+}
+
+struct B {
+    String name
+}
+
+task Z {
+    command {
+        echo Z
+    }
+}
+
+# Not in alphabetical order
+task Z {
+    command {
+        echo Z
+    }
+}
+
+task A {
+    command {
+        echo A
+    }
+}
+
+struct B {
+    String name
+}
+```
 
 ## 7. Command block ##
 1. Each option in a bash command should be on a new line. Ending previous lines
@@ -333,7 +391,7 @@ Calls in a workflow should be placed in order of execution.
 **yay:**
 
 ```
-task doStuff {
+task DoStuff {
     input {
         File inputFile
         String outputPath
@@ -364,7 +422,7 @@ task doStuff {
 - usage of `${...}` placeholders
 
 ```
-task doStuff {
+task DoStuff {
     input {
         File inputFile
         String outputPath
@@ -387,6 +445,6 @@ Imports should be placed in alphabetical order at the top of the file. All
 imports must be named using the `as` syntax.
 
 ## 9. Style enforcement ##
-For now there is no automated way of styling or check the style of WDL files of
+For now there is no automated way of styling or checking the style of WDL files
 according to these guidelines. It is up to the authors and reviewers to ensure
 the guidelines are adhered to.
