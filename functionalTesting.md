@@ -54,7 +54,7 @@ package. `*` should be replaced by the name of the workflow being tested.
 
 Below the contents of these files is explained for testing single-sample
 workflows. For multi-sample workflow testing is largely the same with
-[some exceptions](#Multi-Sample-workflows).
+[some exceptions](#multi-sample-workflows).
 
 ### \*.scala
 This file contains a `trait` of the same name as the workflow being tested. It
@@ -169,7 +169,7 @@ class FooTestWithDbsnp
 
 ## Multi-Sample workflows
 Testing multi-sample workflows largely works the same as
-[testing single-sample workflows](#Testing-source-files), with a one
+[testing single-sample workflows](#testing-source-files), with a one
 exceptions:  
 Rather than extending `nl.biopet.utils.biowdl.Pipeline` in the `*.scala file`,
 `nl.biopet.utils.biowdl.multisample.MultisamplePipeline` should be extended.
