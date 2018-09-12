@@ -1,8 +1,6 @@
 ---
 layout: default
 title: Inputs
-version: develop
-latest: true
 ---
 
 Most inputs which are not discussed in the usage section a given pipeline or
@@ -14,7 +12,7 @@ issue in the appropriate issue tracker
 
 ## The input JSON
 
-An inputs JSON can be generated using WOMtools as described in the [WOMtools
+An inputs JSON can be generated using WOMtool as described in the [WOMtool
 documentation](http://cromwell.readthedocs.io/en/stable/WOMtool/). However,
 some of the inputs presented in this JSON file should not be used/changed. This
 is because certain tools have inputs which are changeable, due to the usage of

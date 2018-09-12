@@ -1,6 +1,6 @@
 ---
 layout: default
-title: BioWDL Style Guidelines
+title: Style Guidelines
 ---
 
 The following are a set of guidelines to make your WDL file more readable.
