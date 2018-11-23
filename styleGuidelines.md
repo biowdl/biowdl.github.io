@@ -3,11 +3,11 @@ layout: default
 title: Style Guidelines
 ---
 
-The following are a set of guidelines to make your WDL file more readable.
+The following are a set of guidelines to make your WDL files more readable.
 Any workflow or pipeline that is part of BioWDL should adhere to these
 guidelines.
 
-These guidelines were written for WDL 1.0, some segements may not be
+These guidelines were written for WDL 1.0, some segments may not be
 applicable for other WDL versions.
 
 ## 1. Indentation ##
@@ -55,8 +55,9 @@ workflow Example {
 Blank lines should be used to separate different parts of a workflow:
 - Different blocks (code surrounded by `{}` or `<<<>>>`) should be separated
   by a single blank line.
-- Different groupings of inputs (either in call blocks or task blocks,
-  may also be separated by a single blank line.
+- Different groupings of inputs (in call, task and workflow blocks) and items
+  in runtime and parameter_meta sections may also be separated by a single
+  blank line.
 - Between the closing braces of a parent and child block, no blank lines should
   be placed.
 
@@ -120,7 +121,8 @@ not be a space between the brackets and their first or last value.
 In the case of function calls, there should *not* be a space between the
 function's name and the opening bracket of it's parameters, but besides that
 the same rules apply as with groupings, as far as the brackets are concerned.
-The commas separating the parameters should be followed by a space.
+The commas separating the parameters should be followed, but not preceded by a
+space.
 
 There are a number of operators which should always be surrounded by spaces:
 - Less than: `<`
@@ -166,7 +168,7 @@ on logical places. These include:
 - Following a comma.
 - Before the `then` or `else` in an `if-then-else` expression.
 - Following an opening bracket (`(`).
-- Following an operators which would otherwise be followed by a space (see
+- Following an operator which would otherwise be followed by a space (see
   section 3), as a last resort.
 
 In addition there are some places where there should always be a line break.
@@ -298,7 +300,7 @@ task doStuff {
     command {
         someScript \
         -i ~{input} \
-        --maxRAM ~{maxRAM} \
+        --maxRAM ~{ram} \
         -o outputPath
     }
 
@@ -307,15 +309,18 @@ task doStuff {
     }
 }
 ```
-## 6. Workflow structure ##
+
+## 6. Modularization ##
 In general tasks and structs should be kept in separate files from workflows.
-Only if a task is small and specific to a certain workflow should it be in the
-same file as the workflow.  
+Only if a task is small and specific to a certain workflow may it be placed in
+the same file as the workflow.  
 Tasks and structs relating to the same tool or toolkit should be in the same
 file. If a file contains multiple tasks and/or structs, the structs should be
-kept below the tasks and both the tasks and both the tasks and structs should
-be ordered alphabetically.  
-Calls in a workflow should be placed in order of execution.
+kept below the tasks and both the tasks and structs should be ordered
+alphabetically. Calls and value assignments in a workflow should be placed in
+order of execution.
+
+### Examples ###
 
 **yay:**
 ```
@@ -373,18 +378,31 @@ struct B {
 }
 ```
 
-## 7. Command block ##
+## 7. Tasks ##
+
+### The command section ###
 1. Each option in a bash command should be on a new line. Ending previous lines
    with a backslash (`\`). Some grouping of options on a single line may be
    acceptable. For example, various java memory settings may be set on the same
    line, as long as the line does not exceed the line length limit as described
    in section 4.
-2. All bash commands should start with `set -eo pipefail`.
-3. All commands should have a `~{preCommand}` following point 2 and before the
-   actual command. Preferably *directly* before the actual command. The
-   preCommand should be settable as an inputs.
+2. All bash commands should start with `set -e -o pipefail` if more than one
+   bash command gets executed in the task.
+3. Commands should have a `~{preCommand}` following point 2 and before the
+   actual command, if no docker container is specified in the runtime section.
+   This will allow for a (eg.) a conda environment to be loaded for the
+   execution of the task. This precommand should be placed *directly* before
+   the actual command and should be settable as an inputs.
 4. The `~{...}` placeholder syntax should be used in all cases, rather than
    the `${...}` syntax.
+
+### Runtime section ###
+It is highly advised to provide a docker container for all tasks. These should
+be publicly available docker containers.
+
+### The parameter_meta section ###
+It is highly advised that a parameter_meta section is defined, containing
+descriptions of both the inputs and output of the task.
 
 ### Examples ###
 
@@ -401,8 +419,8 @@ task DoStuff {
     }
 
     command {
-        set -eo pipefail
-        ~{preCommand}
+        set -e -o pipefail
+        mkdir -p `dirname outputPath`
         someScript \
         -i ~{inputFile} \
         --maxRAM ~{maxRAM} \
@@ -412,14 +430,28 @@ task DoStuff {
     output {
         File output = outputPath
     }
+
+    runtime {
+      docker: "alpine"
+    }
+
+    parameter_meta {
+        inputFile: "A file"
+        outputPath: "A location to put the output"
+        maxRam: "The maximum amount of RAM that can be used (in GB)"
+
+        output: "A file containing the output"
+    }
 }
 ```
 
 **nay:**
 - all option are on the same line
-- `set -eo pipefail` is absent
-- `preCommand` is absent
+- `set -e -o pipefail` is absent
+- `preCommand` is absent even though no docker container is defined
 - usage of `${...}` placeholders
+- runtime section is absent
+- parameter_meta section is absent
 
 ```
 task DoStuff {
@@ -431,6 +463,7 @@ task DoStuff {
     }
 
     command {
+        mkdir -p `dirname outputPath`
         someScript -i ${inputFile} --maxRAM ${maxRAM} -o outputPath
     }
 
