@@ -388,8 +388,9 @@ struct B {
    in section 4.
 2. All bash commands should start with `set -e -o pipefail` if more than one
    bash command gets executed in the task.
-3. Commands should have a `~{preCommand}` following point 2 and before the
-   actual command, if no docker container is specified in the runtime section.
+3. If (and only if) no docker container is specified in the runtime section
+   (see Runtime section below), commands should have a `~{preCommand}`
+   following point 2 and before the actual command.
    This will allow for a (eg.) a conda environment to be loaded for the
    execution of the task. This precommand should be placed *directly* before
    the actual command and should be settable as an inputs.
@@ -397,8 +398,11 @@ struct B {
    the `${...}` syntax.
 
 ### Runtime section ###
-It is highly advised to provide a docker container for all tasks. These should
-be publicly available docker containers.
+A docker container should be provided for all tasks. These should be publicly
+available docker containers. Only if a task performs highly generic tasks
+(eg. a simple `ln` command) may the docker container be omitted. Under some
+circumstances there may be exceptions to this guideline, such as legacy
+implementations making it impossible to use a container.
 
 ### The parameter_meta section ###
 It is highly advised that a parameter_meta section is defined, containing
