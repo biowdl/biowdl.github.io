@@ -6,11 +6,8 @@ title: Home
 ## About
 BioWDL is a collection of pipelines and workflows usable for a variety of
 sequencing related analyses. They are made using
-[WDL](https://software.broadinstitute.org/wdl/) and closely related to
-[BIOPET](https://biopet.github.io/).
-
-BioWDL is developed at the Leiden University Medical Center by
-[the SASC team](http://sasc.lumc.nl/).
+[WDL](https://software.broadinstitute.org/wdl/) and are developed at the
+Leiden University Medical Center by [the SASC team](http://sasc.lumc.nl/).
 
 ## Pipelines and other repositories
 The following are the pipelines and repositories from BioWDL. The repositories
@@ -20,10 +17,10 @@ sample at a time. These are production ready.
 - **Multi-Sample**: Pipelines or workflows which can be run for a multiple
 samples at the same time and perform inter-sample operations. These are
 production ready.
-- **Single-Sample Experimental**: Experimental (not production ready)
-Single-Sample pipelines and workflows.
-- **Multi-Sample Experimental**: Experimental (not production ready)
-Multi-Sample pipelines and workflows.
+- **Single-Sample InDevelopment**: Single-Sample pipelines and workflows which
+are still in development.
+- **Multi-Sample InDevelopment**: Multi-Sample pipelines and workflows which
+are still in development.
 - **Other**: Repositories which contain something other than workflows or
 pipelines.
 
