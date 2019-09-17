@@ -6,8 +6,9 @@ title: Home
 ## About
 BioWDL is a collection of pipelines and workflows usable for a variety of
 sequencing related analyses. They are made using
-[WDL](https://software.broadinstitute.org/wdl/) and are developed at the
-Leiden University Medical Center by [the SASC team](http://sasc.lumc.nl/).
+[WDL](http://www.openwdl.org/) and are developed at the
+[Leiden University Medical Center](https://www.lumc.nl/) by 
+the SASC team.
 
 ## Pipelines and other repositories
 The following are the pipelines and repositories from BioWDL. The repositories
@@ -33,14 +34,10 @@ pipelines.
 {% endif -%}
 {% endfor %}
 
-## Inputs
-For some general notes regarding the inputs of the above mentioned pipelines
-and workflows, please have a look [here](inputs.md).
-
 ## Contributing
 Please feel free to make a pull requests if you have something you would like
 to add or improve. Below you can find a link to the style guidelines these
-pipelines should adhere to, as well as instructions on adding functional tests.
+pipelines should adhere to, as well as some notes on adding tests.
 
 ### Style guidelines
 You can find the style guidelines [here](styleGuidelines.md). The BioWDL
@@ -50,7 +47,7 @@ is unclear or you feel something is missing, please don't hesitate to make an
 [pull request](https://github.com/biowdl/biowdl.github.io/pulls).
 
 ### Functional tests
-You can find instructions on how to add functional tests
+You can find documentation on the automated testing used in BioWDL
 [here](functionalTesting.md).
 
 ## Contact

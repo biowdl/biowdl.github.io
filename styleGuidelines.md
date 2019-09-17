@@ -399,10 +399,11 @@ struct B {
 
 ### Runtime section ###
 A docker container should be provided for all tasks. These should be publicly
-available docker containers. Only if a task performs highly generic tasks
-(eg. a simple `ln` command) may the docker container be omitted. Under some
-circumstances there may be exceptions to this guideline, such as legacy
-implementations making it impossible to use a container.
+available docker containers. [Biocontainers](https://biocontainers.pro/#/)
+are generally preferred. Only if a task performs highly generic tasks 
+(eg. a simple `ln` command) may the docker container be omitted. Under
+some circumstances there may be exceptions to this guideline, such as
+legacy implementations making it impossible to use a container.
 
 ### The parameter_meta section ###
 It is highly advised that a parameter_meta section is defined, containing
