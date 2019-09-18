@@ -29,8 +29,10 @@ pipelines.
 |-|-|-|
 {% for repo in site.github.public_repositories -%}
 {% if repo.has_pages -%}
+{% if repo.description contains "Category:" -%}
 {% assign category = repo.description | split: "Category:" -%}
 | [{{ repo.name }}](/{{repo.name}})  ([repo]({{repo.html_url}}))| {{ category | last }} | {{ category | first }} |
+{% endif -%}
 {% endif -%}
 {% endfor %}
 
