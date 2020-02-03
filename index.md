@@ -50,7 +50,7 @@ is unclear or you feel something is missing, please don't hesitate to make an
 
 ### Functional tests
 You can find documentation on the automated testing used in BioWDL
-[here](functionalTesting.md).
+[here](testing.md).
 
 ## Contact
 For any question related to any BioWDL workflows, please use the relevant
