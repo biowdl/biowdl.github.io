@@ -1,4 +1,4 @@
-remote_theme: biowdl/minimal
+remote_theme: biowdl/biowdl-docs-theme
 title: BioWDL
 description: A collection of WDL pipelines for sequencing analyses.
 logo: /assets/img/logo.png
